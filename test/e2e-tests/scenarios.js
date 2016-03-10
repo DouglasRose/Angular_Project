@@ -9,11 +9,11 @@ describe('github App', function() {
       browser.get('app/index.html');
     });
 
-    it('should have 3 instances of profiles in a list', function() {
+    it('should have 30 instances of profiles in a list', function() {
 
       var profileList = element.all(by.repeater('profile in profiles'));
 
-      expect(profileList.count()).toBe(3);
+      expect(profileList.count()).toBe(30);
     });
 
   });
