@@ -1,8 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "angular-github",
+  "description": "MakersAcademy week 8 Projecr - AngularJS",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "https://github.com/DouglasRose/Angular_Project",
   "license": "MIT",
   "private": true,
   "dependencies": {
