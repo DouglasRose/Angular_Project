@@ -1,9 +1,14 @@
 'use strict';
 
+var githubControllers = angular.module('githubControllers',[]);
 
-githubApp.controller('ProfileListCtrl', function($scope, $http) {
-  $http.get('users.json').success(function(data) {
+githubControllers.controller('ProfileListCtrl',['$scope', 'Profile', function($scope, Profile) {
+  $scope.profiles = Profile.query();
+}]);
 
-  $scope.profiles = data;
+githubControllers.controller('ProfileDetailCtrl', ['$scope', 'Profile', function($scope, Profile) {
+  $scope.profile = Profile.get({login: login}, function(profile) {
+      $scope.followers = profile.followers;
   });
-});
+
+}]);
