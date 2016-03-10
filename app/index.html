@@ -18,11 +18,12 @@
 
 Github Users:
 
-  <input name="searchfield" placeholder="Search Username">
+  <input name="searchfield" placeholder="Search Username" ng-model="query">
+
 
 
   <ul>
-    <li ng-repeat="profile in profiles">
+    <li ng-repeat="profile in profiles | filter:query">
       <span>{{profile.login}}</span>
     </li>
   </ul>
