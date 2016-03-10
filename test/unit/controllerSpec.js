@@ -2,15 +2,25 @@
 
 describe('githubApp controllers', function() {
 
-  beforeEach(module('githubApp'));
-
   describe('ProfileList controller', function(){
+    var scope, ctrl, $httpBackend;
 
-    it('should create "profiles" model with 3 profiles', inject(function($controller) {
-      var scope = {},
-          ctrl = $controller('ProfileListCtrl', {$scope:scope});
-      expect(scope.profiles.length).toBe(3);
+    beforeEach(module('githubApp'));
+
+    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+      $httpBackend = _$httpBackend_;
+      $httpBackend.expectGET('users.json').respond([{login:'mojombo' }, {login:'defunkt'}]);
+
+      scope = $rootScope.$new();
+      ctrl = $controller('ProfileListCtrl', {$scope:scope});
     }));
 
+    it('should create "profiles" model with 2 profiles',
+    function() {
+      expect(scope.profiles).toBeUndefined();
+      $httpBackend.flush();
+
+      expect(scope.profiles).toEqual([{login:'mojombo' }, {login:'defunkt'}]);
+    });
   });
 });
