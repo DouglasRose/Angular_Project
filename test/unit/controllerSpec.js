@@ -9,7 +9,7 @@ describe('githubApp controllers', function() {
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('users.json').respond([{login:'mojombo' }, {login:'defunkt'}]);
+      $httpBackend.expectGET('https://api.github.com/users').respond([{login:'mojombo' }, {login:'defunkt'}]);
 
       scope = $rootScope.$new();
       ctrl = $controller('ProfileListCtrl', {$scope:scope});
@@ -18,9 +18,16 @@ describe('githubApp controllers', function() {
     it('should create "profiles" model with 2 profiles',
     function() {
       expect(scope.profiles).toBeUndefined();
+      scope.searchUser();
       $httpBackend.flush();
 
       expect(scope.profiles).toEqual([{login:'mojombo' }, {login:'defunkt'}]);
     });
+
+    it('should have a search method', function() {
+
+      expect(scope.searchUser).toBeDefined();
+
+    })
   });
 });

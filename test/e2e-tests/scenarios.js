@@ -10,11 +10,11 @@ describe('github App', function() {
       browser.get('app/index.html');
     });
 
-    it('should have 30 instances of profiles in a list', function() {
+    it('should start with an empty list', function() {
 
       var profileList = element.all(by.repeater('profile in profiles'));
 
-      expect(profileList.count()).toBe(30);
+      expect(profileList.count()).toBe(0);
     });
 
   });
@@ -33,15 +33,29 @@ describe('github App', function() {
       var profileList = element.all(by.repeater('profile in profiles'));
       var query = element(by.model('query'));
 
-      expect(profileList.count()).toBe(30);
+      expect(profileList.count()).toBe(0);
 
-      query.sendKeys('atmos');
-      expect(profileList.count()).toBe(1);
 
-      query.clear();
-      query.sendKeys('mojo');
-      expect(profileList.count()).toBe(2);
+
+      // query.sendKeys('atmos');
+      // expect(profileList.count()).toBe(1);
+      //
+      // query.clear();
+      // query.sendKeys('mojo');
+      // expect(profileList.count()).toBe(2);
     });
+
+    it('should have a search button', function() {
+      var buttons = element.all(by.css('#search-button'));
+      expect(buttons.count()).toBeGreaterThan(0);
+    })
+
+    xit('should call search method when you click search button', function() {
+      var buttons = element.all(by.css('#search-button'));
+      buttons.click();
+      expect(searchUser()).toHaveBeenCalled();
+
+    })
   });
 
 });
