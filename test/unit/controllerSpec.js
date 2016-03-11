@@ -9,7 +9,9 @@ describe('githubApp controllers', function() {
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('users.json').respond([{login:'mojombo' }, {login:'defunkt'}]);
+      $httpBackend.expectGET('https://api.github.com/users').respond([{login:'mojombo' }, {login:'defunkt'}]);
+      $httpBackend.expectGET('https://api.github.com/users/mojombo').respond([{login:'mojombo', followers: 19052}]);
+      $httpBackend.expectGET('https://api.github.com/users/defunkt').respond([{login:'defunkt', followers: 15203}]);
 
       scope = $rootScope.$new();
       ctrl = $controller('ProfileListCtrl', {$scope:scope});
@@ -20,7 +22,7 @@ describe('githubApp controllers', function() {
       expect(scope.profiles).toBeUndefined();
       $httpBackend.flush();
 
-      expect(scope.profiles).toEqual([{login:'mojombo' }, {login:'defunkt'}]);
+      expect(scope.profiles).toEqual([[{login:'mojombo', followers: 19052}], [{login:'defunkt', followers: 15203}]]);
     });
   });
 });

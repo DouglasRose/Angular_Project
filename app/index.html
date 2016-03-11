@@ -16,11 +16,14 @@
 </head>
 <body ng-controller="ProfileListCtrl">
 
-Github Users:
+Github Users
 
-  <ul>
+  <ul class="profiles">
     <li ng-repeat="profile in profiles">
       <span>{{profile.login}}</span>
+      <a href="{{profile.html_url}}"><img ng-src="{{profile.avatar_url}}" class="{{profile.avatar_url}}" height="75" width="75" title="{{profile.login}}"></a>
+      <p> Repos: {{profile.public_repos}}</p>
+      <p>Followers: {{profile.followers}}</p>
     </li>
   </ul>
 
