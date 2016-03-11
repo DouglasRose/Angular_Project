@@ -17,11 +17,12 @@
 <body ng-controller="ProfileListCtrl">
 
 Github Users:
-
+<p>{{profiles_found}}</p>
   <ul>
     <li ng-repeat="profile in profiles">
       <span>{{profile.login}}</span>
       <p>Followers:{{profile.followers}}</p>
+      <p>Repos:{{profile.public_repos}}</p>
     </li>
   </ul>
 
@@ -32,7 +33,5 @@ Github Users:
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="js/services.js"></script>
 </body>
 </html>
