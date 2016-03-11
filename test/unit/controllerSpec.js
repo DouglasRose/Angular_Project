@@ -9,9 +9,10 @@ describe('githubApp controllers', function() {
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
+
       $httpBackend.expectGET('https://api.github.com/users').respond([{login:'mojombo' }, {login:'defunkt'}]);
-      $httpBackend.expectGET('https://api.github.com/users/mojombo').respond([{login:'mojombo', followers: 19052}]);
-      $httpBackend.expectGET('https://api.github.com/users/defunkt').respond([{login:'defunkt', followers: 15203}]);
+      $httpBackend.expectGET('https://api.github.com/users/mojombo').respond([{login:'mojombo', followers: 19052, avatar_url:'https://avatars.githubusercontent.com/u/1?v=3'}]);
+      $httpBackend.expectGET('https://api.github.com/users/defunkt').respond([{login:'defunkt', followers: 15203, avatar_url:'https://avatars.githubusercontent.com/u/2?v=3'}]);
 
       scope = $rootScope.$new();
       ctrl = $controller('ProfileListCtrl', {$scope:scope});
@@ -22,7 +23,8 @@ describe('githubApp controllers', function() {
       expect(scope.profiles).toBeUndefined();
       $httpBackend.flush();
 
-      expect(scope.profiles).toEqual([[{login:'mojombo', followers: 19052}], [{login:'defunkt', followers: 15203}]]);
+      expect(scope.profiles).toEqual([[{login:'mojombo', followers: 19052, avatar_url:'https://avatars.githubusercontent.com/u/1?v=3'}], [{login:'defunkt', followers: 15203, avatar_url:'https://avatars.githubusercontent.com/u/2?v=3'}]]);
+
     });
   });
 });
