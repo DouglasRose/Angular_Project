@@ -1,25 +1,34 @@
 'use strict';
 
-
 githubApp.controller('ProfileListCtrl', function($scope, $http) {
-  $http.get('https://api.github.com/users').success(function(data) {
+  var general_info, users, login_names, specific_info
+
+  $scope.searchUser = function(search) {
+
+    $http.get('https://api.github.com/search/users?q='+search).success(function(data) {
+
+      general_info = [];
+      users = [];
+      login_names = [];
+      specific_info = [];
+
+      general_info.push(data.items);
 
 
-    var arr = []
-    for (var i = 0; i < data.length; i++){
+      for (var i=0; i < general_info[0].length; i++) {
+        users.push(general_info[0][i])
+      }
 
-      arr.push(data[i].login)
-    }
+      users.forEach(function(entry){
+        login_names.push(entry.login)
+      });
 
-    var arr2 = []
-    arr.forEach(function(entry){
-      $http.get('https://api.github.com/users/'+entry).success(function(data) {
-        arr2.push(data);
+      login_names.forEach(function(entry){
+        $http.get('https://api.github.com/users/'+entry).success(function(data) {
+        specific_info.push(data);
+        });
+        $scope.profiles = specific_info;
+      });
     });
-     $scope.profiles = arr2;
-
-    });
-
-  });
-
+  };
 });
