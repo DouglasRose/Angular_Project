@@ -9,7 +9,8 @@ describe('githubApp controllers', function() {
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('users.json').respond([{login:'mojombo' }, {login:'defunkt'}]);
+      $httpBackend.expectGET('users.json').respond([{login:'mojombo', avatar_url:'https://avatars.githubusercontent.com/u/1?v=3'},
+                                                    {login:'defunkt', avatar_url:'https://avatars.githubusercontent.com/u/2?v=3'}]);
 
       scope = $rootScope.$new();
       ctrl = $controller('ProfileListCtrl', {$scope:scope});
@@ -20,7 +21,8 @@ describe('githubApp controllers', function() {
       expect(scope.profiles).toBeUndefined();
       $httpBackend.flush();
 
-      expect(scope.profiles).toEqual([{login:'mojombo' }, {login:'defunkt'}]);
+      expect(scope.profiles).toEqual([{login:'mojombo', avatar_url:'https://avatars.githubusercontent.com/u/1?v=3'},
+                                      {login:'defunkt', avatar_url:'https://avatars.githubusercontent.com/u/2?v=3'}]);
     });
   });
 });
