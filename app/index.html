@@ -25,6 +25,7 @@ Github Users:
   <ul>
     <li ng-repeat="profile in profiles | filter:query">
       <span>{{profile.login}}</span>
+      <img id="{{profile.avatar_url}}" src="{{profile.avatar_url}}" height="75" width ="75">
     </li>
   </ul>
 

@@ -13,8 +13,16 @@ describe('github App', function() {
     it('should have 30 instances of profiles in a list', function() {
 
       var profileList = element.all(by.repeater('profile in profiles'));
-
+      // console.log("Profilelist:" + profileList.all)
       expect(profileList.count()).toBe(30);
+    });
+    it('should display the username from the profile', function() {
+      var profileList = element.all(by.repeater('profile in profiles'));
+      expect(profileList.get(0).getText()).toEqual('mojombo');
+      expect(profileList.get(3).getText()).toMatch('wycats');
+    });
+    it('should display the users avatar', function(){
+      expect(element(by.id('https://avatars.githubusercontent.com/u/1?v=3')).isPresent()).toBe(true);
     });
 
   });
