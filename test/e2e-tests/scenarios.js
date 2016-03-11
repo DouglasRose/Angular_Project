@@ -18,7 +18,7 @@ describe('github App', function() {
     });
     it('should display the username from the profile', function() {
       var profileList = element.all(by.repeater('profile in profiles'));
-      expect(profileList.get(0).getText()).toEqual('mojombo');
+      expect(profileList.get(0).getText()).toMatch('mojombo');
       expect(profileList.get(3).getText()).toMatch('wycats');
     });
     it('should display the users avatar', function(){
