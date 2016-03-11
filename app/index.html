@@ -17,14 +17,17 @@
 <body ng-controller="ProfileListCtrl">
 
 Github Users:
+Version 1
 
   <input name="searchfield" placeholder="Search Username" ng-model="query">
-  <button id="search-button" ng-click="searchUser()">Search</button>
+  <button id="search-button" ng-click="searchUser(query);">Search</button>
+
 
 
   <ul>
-    <li ng-repeat="profile in profiles | filter:query">
+    <li ng-repeat="profile in profiles| filter:query">
       <span>{{profile.login}}</span>
+      <span>{{profile.followers}}</span>
     </li>
   </ul>
 

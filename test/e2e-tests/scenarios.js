@@ -56,6 +56,8 @@ describe('github App', function() {
       expect(searchUser()).toHaveBeenCalled();
 
     })
+
+
   });
 
 });
