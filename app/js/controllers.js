@@ -27,8 +27,11 @@ githubApp.controller('ProfileListCtrl', function($scope, $http) {
         $http.get('https://api.github.com/users/'+entry).success(function(data) {
         specific_info.push(data);
         });
-        $scope.profiles = specific_info;
+
+
       });
+      $scope.profiles = specific_info;
+    //  console.log(specific_info);
     });
   };
 });
