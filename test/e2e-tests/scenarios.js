@@ -1,8 +1,5 @@
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
-'use strict';
-
 describe('github App', function() {
 
   describe('Profile list view', function() {
@@ -10,21 +7,12 @@ describe('github App', function() {
       browser.get('app/index.html');
     });
 
-    it('should have 30 instances of profiles in a list', function() {
+    it('should start with an empty list', function() {
 
       var profileList = element.all(by.repeater('profile in profiles'));
-      // console.log("Profilelist:" + profileList.all)
-      expect(profileList.count()).toBe(30);
-    });
-    it('should display the username from the profile', function() {
-      var profileList = element.all(by.repeater('profile in profiles'));
-      expect(profileList.get(0).getText()).toEqual('mojombo');
-      expect(profileList.get(3).getText()).toMatch('wycats');
-    });
-    it('should display the users avatar', function(){
-      expect(element(by.id('https://avatars.githubusercontent.com/u/1?v=3')).isPresent()).toBe(true);
-    });
+      expect(profileList.count()).toBe(0);
 
+    });
   });
 
   describe('Profile search', function() {
@@ -41,15 +29,33 @@ describe('github App', function() {
       var profileList = element.all(by.repeater('profile in profiles'));
       var query = element(by.model('query'));
 
-      expect(profileList.count()).toBe(30);
+      expect(profileList.count()).toBe(0);
 
-      query.sendKeys('atmos');
-      expect(profileList.count()).toBe(1);
+      query.sendKeys('mojo');
+      console.log(profileList)
+      expect(profileList.get(0).getText()).toMatch('rjmolesa');
+      expect(profileList.get(1).getText()).toMatch('mojombo');
 
       query.clear();
-      query.sendKeys('mojo');
-      expect(profileList.count()).toBe(2);
+      query.sendKeys('mattgough');
+      expect(profileList.count()).toBe(1);
     });
-  });
 
+    it('should display the users avatar', function(){
+      expect(element(by.id('https://avatars.githubusercontent.com/u/1?v=3')).isPresent()).toBe(true);
+    });
+
+
+    it('should have a search button', function() {
+      var buttons = element.all(by.css('#search-button'));
+      expect(buttons.count()).toBeGreaterThan(0);
+    })
+
+    xit('should call search method when you click search button', function() {
+      var buttons = element.all(by.css('#search-button'));
+      buttons.click();
+      expect(searchUser()).toHaveBeenCalled();
+
+    })
+  });
 });
