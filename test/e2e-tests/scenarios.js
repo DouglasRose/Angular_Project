@@ -32,16 +32,20 @@ describe('github App', function() {
       expect(profileList.count()).toBe(0);
 
       query.sendKeys('mojo');
-      console.log(profileList)
+      element(by.buttonText('Search')).click();
       expect(profileList.get(0).getText()).toMatch('rjmolesa');
       expect(profileList.get(1).getText()).toMatch('mojombo');
 
       query.clear();
       query.sendKeys('mattgough');
+      element(by.buttonText('Search')).click();
       expect(profileList.count()).toBe(1);
     });
 
     it('should display the users avatar', function(){
+      var query = element(by.model('query'));
+      query.sendKeys('mojombo');
+      element(by.buttonText('Search')).click();
       expect(element(by.id('https://avatars.githubusercontent.com/u/1?v=3')).isPresent()).toBe(true);
     });
 
