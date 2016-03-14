@@ -2,7 +2,7 @@
 
 ##Description
 
-Simple GitHub Profile app that using Github API/Javascript/AngularJS to allow search througth Github user profiles and show list of github profiles information for requested username: user's login,user's avatar, number of followers and number of repos.
+Simple GitHub Profile app that using Github API/Javascript/AngularJS to allow search through Github user profiles and show list of github profiles information for requested username: user's login,user's avatar, number of followers and number of repos.
 
 
 ##Authors
@@ -18,6 +18,7 @@ Simple GitHub Profile app that using Github API/Javascript/AngularJS to allow se
 - Javascript
 - GitHub API
 - Testing with Jasmine/Karma
+- Node & npm
 
 ## Installation
 - Add dependencies by ```bower install```
@@ -28,6 +29,12 @@ Simple GitHub Profile app that using Github API/Javascript/AngularJS to allow se
 - Run Protractor ```npm run protractor``` in another terminal tab
 
 ## Implementation
+
+## Deployment to Heroku
+- Set up on ```sinatra-heroku``` branch
+- Initialized with ```sinatra gem```
+- Visit at https://github-user-search123.herokuapp.com/
+
 
 ## User Stories
 
