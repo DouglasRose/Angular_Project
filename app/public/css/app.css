@@ -1,0 +1,16 @@
+h4{
+  margin-top: 0;
+}
+.form-group{
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.form-group .form-control {
+  width: 85%;
+  display: inline-block;
+}
+
+.profiles li{
+ margin-bottom: 30px;
+}
