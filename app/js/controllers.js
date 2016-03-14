@@ -31,7 +31,6 @@ githubApp.controller('ProfileListCtrl', function($scope, $http) {
 
       });
       $scope.profiles = specific_info;
-    //  console.log(specific_info);
     });
   };
 });
